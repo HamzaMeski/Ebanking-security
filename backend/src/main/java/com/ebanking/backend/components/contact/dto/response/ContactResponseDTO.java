@@ -27,4 +27,6 @@ private UserResponseDTO user;
 
     private String address;
 
+    private Double balance;
+
 }

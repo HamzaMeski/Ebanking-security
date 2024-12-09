@@ -32,4 +32,6 @@ private Long userId;
 
     private String address;
 
+    private Double balance = 0.0;
+
 }
