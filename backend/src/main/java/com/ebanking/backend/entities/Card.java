@@ -1,6 +1,7 @@
 package com.ebanking.backend.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,13 +20,14 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String cardNumber;
 
-    @Column(nullable = false)
-    private String cardType = "Credit"; // e.g., Credit, Debit
+    @NotNull(message = "cardType is required")
+    private String cardType;
 
-    @NotBlank(message = "role is required!")
-    private LocalDate expiryDate = LocalDate.of(2025, 11, 1);
+    @NotNull(message = "expiryDate is required!")
+    private LocalDate expiryDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

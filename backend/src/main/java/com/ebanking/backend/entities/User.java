@@ -30,7 +30,7 @@ public class User {
     private String role; // e.g., ROLE_USER, ROLE_ADMIN
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Account> accounts;
+    private Set<Contact> contacts;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Loan> loans;

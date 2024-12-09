@@ -22,7 +22,7 @@ public class UpdateNoticeDTO extends UpdateDTO<Notice> {
     @NotBlank(message = "description is required!")
     private String description;
 
-    @NotBlank(message = "createDate is required!")
+    @NotNull(message = "createDate is required")
     private LocalDateTime createdDate;
 
 }

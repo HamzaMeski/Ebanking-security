@@ -1,6 +1,7 @@
 package com.ebanking.backend.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,6 @@ public class Notice {
     @NotBlank(message = "description is required!")
     private String description;
 
-    @NotBlank(message = "createDate is required!")
+    @NotNull(message = "createDate is required")
     private LocalDateTime createdDate;
 }

@@ -27,7 +27,7 @@ private Long userId;
 
     private String cardType;
 
-    @NotBlank(message = "role is required!")
+    @NotNull(message = "expiryDate is required!")
     private LocalDate expiryDate;
 
 }
