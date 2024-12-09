@@ -1,12 +1,12 @@
-package com.youquiz.backend.EntityComponentsProvider.service;
+package com.ebanking.backend.EntityComponentsProvider.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 
-import com.youquiz.backend.EntityComponentsProvider.dto.request.CreateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.request.UpdateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.response.ResponseDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.CreateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.UpdateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.response.ResponseDTO;
 
 import jakarta.validation.Valid;
 

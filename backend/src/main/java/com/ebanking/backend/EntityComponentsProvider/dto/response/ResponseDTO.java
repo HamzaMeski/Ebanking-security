@@ -1,4 +1,4 @@
-package com.youquiz.backend.EntityComponentsProvider.dto.response;
+package com.ebanking.backend.EntityComponentsProvider.dto.response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

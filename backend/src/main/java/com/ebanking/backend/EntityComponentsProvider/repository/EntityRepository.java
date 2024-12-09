@@ -1,4 +1,4 @@
-package com.youquiz.backend.EntityComponentsProvider.repository;
+package com.ebanking.backend.EntityComponentsProvider.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;

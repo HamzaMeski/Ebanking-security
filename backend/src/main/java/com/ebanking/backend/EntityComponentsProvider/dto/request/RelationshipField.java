@@ -1,4 +1,4 @@
-package com.youquiz.backend.EntityComponentsProvider.dto.request;
+package com.ebanking.backend.EntityComponentsProvider.dto.request;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

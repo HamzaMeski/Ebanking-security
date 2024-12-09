@@ -1,4 +1,4 @@
-package com.youquiz.backend.EntityComponentsProvider.service;
+package com.ebanking.backend.EntityComponentsProvider.service;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -10,13 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.youquiz.backend.EntityComponentsProvider.dto.request.CreateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.request.RelationshipField;
-import com.youquiz.backend.EntityComponentsProvider.dto.request.UpdateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.response.ResponseDTO;
-import com.youquiz.backend.EntityComponentsProvider.mapper.EntityMapper;
-import com.youquiz.backend.EntityComponentsProvider.repository.EntityRepository;
-import com.youquiz.backend.config.exception.ResourceNotFoundException;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.CreateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.RelationshipField;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.UpdateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.response.ResponseDTO;
+import com.ebanking.backend.EntityComponentsProvider.mapper.EntityMapper;
+import com.ebanking.backend.EntityComponentsProvider.repository.EntityRepository;
+import com.ebanking.backend.config.exception.ResourceNotFoundException;
 
 import lombok.RequiredArgsConstructor;
 

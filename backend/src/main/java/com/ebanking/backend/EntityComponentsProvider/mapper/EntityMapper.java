@@ -1,10 +1,10 @@
-package com.youquiz.backend.EntityComponentsProvider.mapper;
+package com.ebanking.backend.EntityComponentsProvider.mapper;
 
 import org.mapstruct.MappingTarget;
 
-import com.youquiz.backend.EntityComponentsProvider.dto.request.CreateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.request.UpdateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.response.ResponseDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.CreateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.UpdateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.response.ResponseDTO;
 
 /**
  * Generic mapper interface for entity-DTO conversions

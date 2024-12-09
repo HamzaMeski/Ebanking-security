@@ -1,4 +1,4 @@
-package com.youquiz.backend.EntityComponentsProvider.controller;
+package com.ebanking.backend.EntityComponentsProvider.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.youquiz.backend.EntityComponentsProvider.dto.request.CreateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.request.UpdateDTO;
-import com.youquiz.backend.EntityComponentsProvider.dto.response.ResponseDTO;
-import com.youquiz.backend.EntityComponentsProvider.service.EntityService;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.CreateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.UpdateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.response.ResponseDTO;
+import com.ebanking.backend.EntityComponentsProvider.service.EntityService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

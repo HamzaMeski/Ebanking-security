@@ -1,5 +1,7 @@
 package com.ebanking.backend.entities;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +18,16 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank(message = "email is required!")
+    @Email(message = "Make sure that set email address is respecting username@example.com format!")
     private String email;
 
-    @Column(nullable = false)
+    @NotBlank(message = "phoneNumber is required!")
     private String phoneNumber;
 
     private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
