@@ -19,13 +19,12 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "cardNumber is required!")
     private String cardNumber;
 
     @Column(nullable = false)
     private String cardType = "Credit"; // e.g., Credit, Debit
 
-    @Column(nullable = false)
+    @NotBlank(message = "role is required!")
     private LocalDate expiryDate = LocalDate.of(2025, 11, 1);
 
     @ManyToOne

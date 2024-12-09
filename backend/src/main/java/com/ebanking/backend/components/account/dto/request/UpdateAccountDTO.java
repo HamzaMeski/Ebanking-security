@@ -23,7 +23,6 @@ public class UpdateAccountDTO extends UpdateDTO<Account> {
 )
 private Long userId;
 
-    @NotBlank(message = "cardNumber is required!")
     private String accountNumber;
 
     private Double balance;

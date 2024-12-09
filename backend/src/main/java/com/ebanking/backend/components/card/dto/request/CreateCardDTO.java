@@ -24,11 +24,11 @@ public class CreateCardDTO extends CreateDTO<Card> {
 @NotNull(message = "user is required")
 private Long userId;
 
-    @NotBlank(message = "cardNumber is required!")
     private String cardNumber;
 
     private String cardType;
 
+    @NotBlank(message = "role is required!")
     private LocalDate expiryDate;
 
 }

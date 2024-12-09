@@ -23,11 +23,11 @@ public class UpdateCardDTO extends UpdateDTO<Card> {
 )
 private Long userId;
 
-    @NotBlank(message = "cardNumber is required!")
     private String cardNumber;
 
     private String cardType;
 
+    @NotBlank(message = "role is required!")
     private LocalDate expiryDate;
 
 }

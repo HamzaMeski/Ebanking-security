@@ -24,7 +24,6 @@ public class CreateAccountDTO extends CreateDTO<Account> {
 @NotNull(message = "user is required")
 private Long userId;
 
-    @NotBlank(message = "cardNumber is required!")
     private String accountNumber;
 
     private Double balance;

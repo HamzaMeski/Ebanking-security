@@ -17,7 +17,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "cardNumber is required!")
+    @Column(nullable = false)
     private String accountNumber;
 
     @Column(nullable = false)
