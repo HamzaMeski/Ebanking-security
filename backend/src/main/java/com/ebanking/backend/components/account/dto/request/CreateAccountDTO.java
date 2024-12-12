@@ -1,6 +1,6 @@
-package com.ebanking.backend.components.contact.dto.request;
+package com.ebanking.backend.components.account.dto.request;
 
-import com.ebanking.backend.EntityComponentsProvider.dto.request.UpdateDTO;
+import com.ebanking.backend.EntityComponentsProvider.dto.request.CreateDTO;
 import com.ebanking.backend.EntityComponentsProvider.dto.request.RelationshipField;
 import com.ebanking.backend.entities.*;
 import java.time.*;
@@ -15,12 +15,13 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UpdateContactDTO extends UpdateDTO<Contact> {
+public class CreateAccountDTO extends CreateDTO<Account> {
 
 @RelationshipField(
         entity = User.class,
         repository = "com.ebanking.backend.components.user.repository.UserRepository"
 )
+@NotNull(message = "user is required")
 private Long userId;
 
     @NotBlank(message = "email is required!")

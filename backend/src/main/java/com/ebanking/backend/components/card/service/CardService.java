@@ -12,9 +12,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.UUID;
-
 @Service
 @Slf4j
 @Transactional
@@ -30,11 +27,4 @@ public class CardService extends EntityServiceImpl<Card, Long, CreateCardDTO, Up
         this.cardRepository = cardRepository;
         this.cardMapper = cardMapper;
     }
-
-    public CardResponseDTO create(CreateCardDTO createCardDTO) {
-        String cardNumber = UUID.randomUUID().toString();
-        createCardDTO.setCardNumber(cardNumber);
-        return super.create(createCardDTO);
-    }
 }
-

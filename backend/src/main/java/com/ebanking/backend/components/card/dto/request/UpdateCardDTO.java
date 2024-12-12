@@ -25,8 +25,10 @@ private Long userId;
 
     private String cardNumber;
 
-    private String cardType = "Credit";
+    @NotNull(message = "cardType is required")
+    private String cardType;
 
-    private LocalDate expiryDate = LocalDate.of(2025, 11, 1);
+    @NotNull(message = "expiryDate is required!")
+    private LocalDate expiryDate;
 
 }

@@ -1,4 +1,4 @@
-package com.ebanking.backend.components.contact.dto.response;
+package com.ebanking.backend.components.account.dto.response;
 
 import com.ebanking.backend.EntityComponentsProvider.dto.response.ResponseDTO;
 import com.ebanking.backend.entities.*;
@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class ContactResponseDTO extends ResponseDTO<Contact, Long> {
+public class AccountResponseDTO extends ResponseDTO<Account, Long> {
 
 private UserResponseDTO user;
 
