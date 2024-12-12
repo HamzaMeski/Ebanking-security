@@ -21,33 +21,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        // Public endpoints
-                        .requestMatchers("/api/notices/**").permitAll()
-                        .requestMatchers("/api/contact/**").permitAll()
-                        .requestMatchers("/api/users/register").permitAll()
-
-                        // Admin only endpoints
-                        .requestMatchers("/api/users").hasRole("ADMIN")
-                        .requestMatchers("/api/users/{username}").hasRole("ADMIN")
-                        .requestMatchers("/api/users/{username}/updateRole").hasRole("ADMIN")
-
-                        // User endpoints
-                        .requestMatchers("/api/users/{username}").hasRole("USER")
-
-                        // Authenticated endpoints
-                        .requestMatchers("/api/myLoans/**").authenticated()
-                        .requestMatchers("/api/myCards/**").authenticated()
-                        .requestMatchers("/api/myAccount/**").authenticated()
-
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(basic -> basic.realmName("Ebanking Security")) // Modern way to configure basic auth
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .permitAll()
-                );
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                // Public endpoints
+                .requestMatchers("/api/notices/**").permitAll()
+                .requestMatchers("/api/contact/**").permitAll()
+                .requestMatchers("/api/users/register").permitAll()
+                
+                // Admin only endpoints
+                .requestMatchers("/api/users").hasAuthority("ADMIN")
+                .requestMatchers("/api/users/{username}").hasAuthority("ADMIN")
+                .requestMatchers("/api/users/{username}/updateRole").hasAuthority("ADMIN")
+                
+                // User endpoints
+                .requestMatchers("/api/users/{username}").hasAuthority("USER")
+                
+                // Authenticated endpoints
+                .requestMatchers("/api/myLoans/**").authenticated()
+                .requestMatchers("/api/myCards/**").authenticated()
+                .requestMatchers("/api/myAccount/**").authenticated()
+                
+                .anyRequest().authenticated()
+            )
+            .httpBasic(basic -> basic.realmName("Ebanking Security"))
+            .formLogin(form -> form
+                .loginPage("/login")
+                .permitAll()
+            );
 
         return http.build();
     }
