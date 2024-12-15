@@ -35,10 +35,10 @@ public class UserController extends Controller<User, Long, CreateUserDTO, Update
         return super.getAll(pageable);
     }
 
-    /*
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> getByUserName(@PathVariable String username) {
-        return ResponseEntity.ok(userService.getByUserName(username));
+
+    @PutMapping("/{id}/updateRole")
+    public ResponseEntity<UserResponseDTO> updateRole(@PathVariable Long id, @Valid @RequestBody UpdateUserDTO request) {
+        super.update(id, request);
+        return ResponseEntity.ok().build();
     }
-     */
 }

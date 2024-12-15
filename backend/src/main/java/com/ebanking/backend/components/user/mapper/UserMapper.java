@@ -2,6 +2,7 @@ package com.ebanking.backend.components.user.mapper;
 
 import com.ebanking.backend.EntityComponentsProvider.mapper.EntityMapper;
 import com.ebanking.backend.components.role.repository.RoleRepository;
+import com.ebanking.backend.config.exception.ValidationException;
 import com.ebanking.backend.entities.Role;
 import com.ebanking.backend.entities.User;
 import com.ebanking.backend.components.user.dto.request.CreateUserDTO;
@@ -36,6 +37,6 @@ public abstract class UserMapper implements EntityMapper<User, Long, CreateUserD
     protected Role getRoleFromName(String roleName) {
         if (roleName == null) return null;
         return roleRepository.findByName(roleName)
-                .orElseThrow(() -> new RuntimeException("Role not found: " + roleName));
+                .orElseThrow(() -> new ValidationException("Role not found: " + roleName));
     }
 }
