@@ -7,7 +7,10 @@ import com.ebanking.backend.components.user.dto.response.UserResponseDTO;
 import com.ebanking.backend.components.user.service.UserService;
 import com.ebanking.backend.entities.User;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +29,11 @@ public class UserController extends Controller<User, Long, CreateUserDTO, Update
     @PostMapping("/register")
     public ResponseEntity<UserResponseDTO> register(@Valid @RequestBody CreateUserDTO createUserDTO) {
         return super.create(createUserDTO);
+    }
+
+    @Override
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Page<UserResponseDTO>> getAll(Pageable pageable) {
+        return super.getAll(pageable);
     }
 }

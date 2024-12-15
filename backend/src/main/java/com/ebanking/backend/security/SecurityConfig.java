@@ -27,20 +27,12 @@ public class SecurityConfig {
                 .requestMatchers("/api/notices/**").permitAll()
                 .requestMatchers("/api/contact/**").permitAll()
                 .requestMatchers("/api/users/register").permitAll()
-                
-                // Admin only endpoints
-                .requestMatchers("/api/users").hasAuthority("ADMIN")
-                .requestMatchers("/api/users/{username}").hasAuthority("ADMIN")
-                .requestMatchers("/api/users/{username}/updateRole").hasAuthority("ADMIN")
-                
-                // User endpoints
-                .requestMatchers("/api/users/{username}").hasAuthority("USER")
-                
+
                 // Authenticated endpoints
                 .requestMatchers("/api/myLoans/**").authenticated()
                 .requestMatchers("/api/myCards/**").authenticated()
                 .requestMatchers("/api/myAccount/**").authenticated()
-                
+
                 .anyRequest().authenticated()
             )
             .httpBasic(basic -> basic.realmName("Ebanking Security"))
