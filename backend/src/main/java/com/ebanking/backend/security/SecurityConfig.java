@@ -43,20 +43,19 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-ui.html"
                 ).permitAll()
-                
+
                 // Authentication endpoints
                 .requestMatchers(HttpMethod.POST,
                     "/api/users/register"
                 ).permitAll()
                 
                 // Admin only endpoints
-                .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/users/{username}").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/users/{username}").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/users/{username}/updateRole").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/users/{id}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/users/{id}/updateRole").hasRole("ADMIN")
                 
                 // User specific endpoints
-                .requestMatchers(HttpMethod.PUT, "/api/users/{username}").hasRole("USER")
+                .requestMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("USER")
                 
                 // Authenticated endpoints (need any role)
                 .requestMatchers(

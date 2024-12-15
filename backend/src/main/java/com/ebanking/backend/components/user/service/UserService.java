@@ -13,6 +13,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @Service
 @Slf4j
 @Transactional
@@ -36,5 +39,13 @@ public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, Up
         }
 
         return super.create(createUserDTO);
+    }
+
+    public UserResponseDTO getByUserName(String username) {
+
+        User user = userRepository.findByEmail(username)
+                .orElseThrow(() -> new ValidationException("username doesn't exist"));
+
+        return userMapper.toResponseDTO(user);
     }
 }

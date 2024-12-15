@@ -4,10 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ebanking.backend.EntityComponentsProvider.controller.Controller;
 import com.ebanking.backend.components.user.dto.request.CreateUserDTO;
@@ -34,8 +31,14 @@ public class UserController extends Controller<User, Long, CreateUserDTO, Update
     }
 
     @Override
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<UserResponseDTO>> getAll(Pageable pageable) {
         return super.getAll(pageable);
     }
+
+    /*
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> getByUserName(@PathVariable String username) {
+        return ResponseEntity.ok(userService.getByUserName(username));
+    }
+     */
 }
