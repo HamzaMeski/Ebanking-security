@@ -23,9 +23,6 @@ public class UpdateAccountDTO extends UpdateDTO<Account> {
 )
 private Long userId;
 
-    @NotBlank(message = "email is required!")
-    private String email;
-
     @NotBlank(message = "phoneNumber is required!")
     private String phoneNumber;
 

@@ -24,9 +24,6 @@ public class CreateAccountDTO extends CreateDTO<Account> {
 @NotNull(message = "user is required")
 private Long userId;
 
-    @NotBlank(message = "email is required!")
-    private String email;
-
     @NotBlank(message = "phoneNumber is required!")
     private String phoneNumber;
 

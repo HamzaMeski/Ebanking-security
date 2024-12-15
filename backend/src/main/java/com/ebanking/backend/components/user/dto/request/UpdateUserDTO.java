@@ -16,13 +16,19 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UpdateUserDTO extends UpdateDTO<User> {
-    @NotBlank(message = "userName is required!")
-    private String userName;
+    @NotBlank(message = "firstName is required!")
+    private String firstName;
+
+    @NotBlank(message = "lastName is required!")
+    private String lastName;
+
+    @NotBlank(message = "email is required!")
+    @Email(message = "email you did set is not valid")
+    private String email;
 
     @NotBlank(message = "password is required!")
     private String password;
 
     @NotBlank(message = "role is required!")
-    private String role;
-
+    private Role role;
 }

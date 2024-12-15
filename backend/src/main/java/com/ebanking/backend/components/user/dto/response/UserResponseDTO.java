@@ -16,12 +16,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserResponseDTO extends ResponseDTO<User, Long> {
-    private Long id;
-
-    private String userName;
-
+    private String firstName;
+    private String lastName;
+    private String email;
     private String password;
-
-    private String role;
-
+    private Role role;
 }
