@@ -24,18 +24,45 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.disable())  // Add this
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
-                        .requestMatchers("/api/notices/**", "/api/contact/**", "/login").permitAll()
-                        .requestMatchers("/api/myLoans/**", "/api/myCards/**", "/api/myAccount/**").authenticated()
-                        .anyRequest().authenticated()
-                )
-                .httpBasic(basic -> basic.realmName("Ebanking Security"));
+            .csrf(csrf -> csrf.disable())
+            .cors(cors -> cors.disable())
+            .sessionManagement(session -> 
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .authorizeHttpRequests(auth -> auth
+                // Public endpoints
+                .requestMatchers(
+                    "/api/notices/**",
+                    "/api/contact/**",
+                    "/login",
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html"
+                ).permitAll()
+                
+                // Authentication endpoints
+                .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
+                
+                // Admin only endpoints
+                .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/users/{username}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/users/{username}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/users/{username}/updateRole").hasRole("ADMIN")
+                
+                // User specific endpoints
+                .requestMatchers(HttpMethod.PUT, "/api/users/{username}").hasRole("USER")
+                
+                // Authenticated endpoints (need any role)
+                .requestMatchers(
+                    "/api/myLoans/**",
+                    "/api/myCards/**",
+                    "/api/myAccount/**"
+                ).authenticated()
+                
+                // Any other request needs authentication
+                .anyRequest().authenticated()
+            )
+            .httpBasic(basic -> basic.realmName("Ebanking Security"));
 
         return http.build();
     }
