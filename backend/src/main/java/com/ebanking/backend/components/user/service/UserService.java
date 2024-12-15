@@ -6,6 +6,7 @@ import com.ebanking.backend.components.user.dto.request.UpdateUserDTO;
 import com.ebanking.backend.components.user.dto.response.UserResponseDTO;
 import com.ebanking.backend.components.user.mapper.UserMapper;
 import com.ebanking.backend.components.user.repository.UserRepository;
+import com.ebanking.backend.config.exception.ValidationException;
 import com.ebanking.backend.entities.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
@@ -26,5 +27,14 @@ public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, Up
         super(userRepository, userMapper, applicationContext);
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+    }
+
+    @Override
+    public UserResponseDTO create(CreateUserDTO createUserDTO) {
+        if(userRepository.existsByEmail(createUserDTO.getEmail())) {
+            throw new ValidationException("Email already exist: "+ createUserDTO.getEmail());
+        }
+
+        return super.create(createUserDTO);
     }
 }
