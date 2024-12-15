@@ -2,7 +2,8 @@ package com.ebanking.backend.components.user.service;
 
 import com.ebanking.backend.EntityComponentsProvider.service.EntityServiceImpl;
 import com.ebanking.backend.components.user.dto.request.CreateUserDTO;
-import com.ebanking.backend.components.user.dto.request.UpdateUserDTO;
+import com.ebanking.backend.components.user.dto.request.UpdateUserInfoDTO;
+import com.ebanking.backend.components.user.dto.request.UpdateUserRoleDTO;
 import com.ebanking.backend.components.user.dto.response.UserResponseDTO;
 import com.ebanking.backend.components.user.mapper.UserMapper;
 import com.ebanking.backend.components.user.repository.UserRepository;
@@ -13,13 +14,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
-
 @Service
 @Slf4j
 @Transactional
-public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, UpdateUserDTO, UserResponseDTO> {
+public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, UpdateUserInfoDTO, UserResponseDTO> {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
@@ -41,11 +39,11 @@ public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, Up
         return super.create(createUserDTO);
     }
 
-    public UserResponseDTO getByUserName(String username) {
+    public void updateRole(Long id, UpdateUserRoleDTO updateUserRoleDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(()-> new ValidationException("user doesn't exist with id: " + id));
 
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new ValidationException("username doesn't exist"));
-
-        return userMapper.toResponseDTO(user);
+        userMapper.updateEntityRole(updateUserRoleDTO, user);
+        userRepository.save(user);
     }
 }
