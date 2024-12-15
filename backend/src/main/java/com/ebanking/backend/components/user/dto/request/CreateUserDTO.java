@@ -29,6 +29,6 @@ public class CreateUserDTO extends CreateDTO<User> {
     @NotBlank(message = "password is required!")
     private String password;
 
-    @NotNull(message = "role is required!")
-    private Role role;
+    @NotBlank(message = "role is required!")
+    private String role;
 }

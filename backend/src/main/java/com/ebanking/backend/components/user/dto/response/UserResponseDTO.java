@@ -20,5 +20,5 @@ public class UserResponseDTO extends ResponseDTO<User, Long> {
     private String lastName;
     private String email;
     private String password;
-    private Role role;
+    private String role;
 }

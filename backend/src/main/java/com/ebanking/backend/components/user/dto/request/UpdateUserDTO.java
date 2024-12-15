@@ -29,6 +29,6 @@ public class UpdateUserDTO extends UpdateDTO<User> {
     @NotBlank(message = "password is required!")
     private String password;
 
-    @NotNull(message = "role is required!")
-    private Role role;
+    @NotBlank(message = "role is required!")
+    private String role;
 }
