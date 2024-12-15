@@ -2,12 +2,15 @@ package com.ebanking.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,27 +24,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                // Public endpoints
-                .requestMatchers("/api/notices/**").permitAll()
-                .requestMatchers("/api/contact/**").permitAll()
-                .requestMatchers("/api/users/register").permitAll()
-
-                // Authenticated endpoints
-                .requestMatchers("/api/myLoans/**").authenticated()
-                .requestMatchers("/api/myCards/**").authenticated()
-                .requestMatchers("/api/myAccount/**").authenticated()
-
-                .anyRequest().authenticated()
-            )
-            .httpBasic(basic -> basic.realmName("Ebanking Security"))
-            .formLogin(form -> form
-                .loginPage("/login")
-                .permitAll()
-            );
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.disable())  // Add this
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.POST, "/api/users/register").permitAll()
+                        .requestMatchers("/api/notices/**", "/api/contact/**", "/login").permitAll()
+                        .requestMatchers("/api/myLoans/**", "/api/myCards/**", "/api/myAccount/**").authenticated()
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(basic -> basic.realmName("Ebanking Security"));
 
         return http.build();
+    }
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+                .requestMatchers(
+                        "/v3/api-docs/**",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html"
+                );
     }
 
     @Bean
