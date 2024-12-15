@@ -18,10 +18,6 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "email is required!")
-    @Email(message = "Make sure that set email address is respecting username@example.com format!")
-    private String email;
-
     @NotBlank(message = "phoneNumber is required!")
     private String phoneNumber;
 
