@@ -36,6 +36,7 @@ public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
     private final Environment environment;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -76,6 +77,9 @@ public class SecurityConfig {
                 
                 // Any other request needs authentication
                 .anyRequest().authenticated()
+            )
+            .exceptionHandling(exceptions -> exceptions
+                    .accessDeniedHandler(new CustomAccessDeniedHandler())
             )
             .authenticationProvider(authenticationProvider())
             .httpBasic(basic -> {});
