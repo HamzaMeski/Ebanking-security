@@ -30,15 +30,6 @@ public class UserService extends EntityServiceImpl<User, Long, CreateUserDTO, Up
         this.userMapper = userMapper;
     }
 
-    @Override
-    public UserResponseDTO create(CreateUserDTO createUserDTO) {
-        if(userRepository.existsByEmail(createUserDTO.getEmail())) {
-            throw new ValidationException("Email already exist: "+ createUserDTO.getEmail());
-        }
-
-        return super.create(createUserDTO);
-    }
-
     public void updateRole(Long id, UpdateUserRoleDTO updateUserRoleDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(()-> new ValidationException("user doesn't exist with id: " + id));
