@@ -30,7 +30,7 @@ public abstract class UserMapper implements EntityMapper<User, Long, CreateUserD
 
     @Mapping(target = "role", ignore = true)
     @Mapping(target = "password", expression = "java(updateDTO.getPassword() != null ? passwordEncoder.encode(updateDTO.getPassword()) : entity.getPassword())")
-    public abstract void updateEntityInfo(UpdateUserInfoDTO updateDTO, @MappingTarget User entity);
+    public abstract void updateEntity(UpdateUserInfoDTO updateDTO, @MappingTarget User entity);
 
     @Mapping(target = "firstName", ignore = true)
     @Mapping(target = "lastName", ignore = true)

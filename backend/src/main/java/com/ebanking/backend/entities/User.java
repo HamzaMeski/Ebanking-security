@@ -39,9 +39,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String roleName = role.getName();
-        if (!roleName.startsWith("ROLE_")) {
-            roleName = "ROLE_" + roleName;
-        }
         return List.of(new SimpleGrantedAuthority(roleName));
     }
 
