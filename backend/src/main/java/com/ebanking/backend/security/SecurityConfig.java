@@ -93,8 +93,8 @@ public class SecurityConfig {
                 );
     }
 
-    @Bean("authenticationProvider")
     @Profile("!test")
+    @Bean("authenticationProvider")
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
@@ -102,8 +102,8 @@ public class SecurityConfig {
         return provider;
     }
 
-    @Bean("authenticationProvider")
     @Profile("test")
+    @Bean("authenticationProvider")
     public DaoAuthenticationProvider testAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider() {
             @Override
